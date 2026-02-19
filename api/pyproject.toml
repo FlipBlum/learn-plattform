@@ -12,6 +12,9 @@ dependencies = [
     "openai>=1.55.0",
     "python-dotenv>=1.0.0",
     "httpx>=0.28.0",
+    "PyJWT>=2.8.0",
+    "ebooklib>=0.18",
+    "python-multipart>=0.0.9",
 ]
 
 [project.optional-dependencies]

@@ -5,4 +5,11 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+  runtimeConfig: {
+    public: {
+      supabaseUrl: "",
+      supabaseKey: "",
+      apiBaseUrl: "http://localhost:8000",
+    },
+  },
 });
