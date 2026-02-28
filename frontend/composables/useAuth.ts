@@ -12,6 +12,8 @@ const authState = reactive<AuthState>({
   loading: true,
 });
 
+let authSubscription: { unsubscribe: () => void } | null = null;
+
 export function useAuth() {
   const { $supabase } = useNuxtApp();
 
@@ -27,10 +29,12 @@ export function useAuth() {
       authState.loading = false;
     }
 
-    $supabase.auth.onAuthStateChange((_event: string, session: Session | null) => {
+    authSubscription?.unsubscribe();
+    const { data } = $supabase.auth.onAuthStateChange((_event: string, session: Session | null) => {
       authState.session = session;
       authState.user = session?.user ?? null;
     });
+    authSubscription = data.subscription;
   }
 
   async function signInWithGoogle() {

@@ -27,16 +27,21 @@ def run():
 
             for entry in entries:
                 link = entry.get("link", "")
+                if not link:
+                    continue
                 existing = sb.table("news_sources").select("id").eq("url", link).execute()
                 if existing.data:
                     continue
 
                 published = entry.get("published_parsed")
-                published_at = (
-                    datetime(*published[:6], tzinfo=timezone.utc).isoformat()
-                    if published
-                    else None
-                )
+                try:
+                    published_at = (
+                        datetime(*published[:6], tzinfo=timezone.utc).isoformat()
+                        if published and len(published) >= 6
+                        else None
+                    )
+                except (TypeError, ValueError):
+                    published_at = None
 
                 sb.table("news_sources").insert(
                     {

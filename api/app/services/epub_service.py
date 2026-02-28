@@ -52,6 +52,8 @@ def create_epub(
         )
         .execute()
     )
+    if not result.data:
+        raise RuntimeError("Failed to insert epub")
     return result.data[0]
 
 

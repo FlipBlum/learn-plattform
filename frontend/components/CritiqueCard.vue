@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import DOMPurify from "dompurify";
 import { marked } from "marked";
 
 interface CritiqueData {
@@ -45,7 +46,7 @@ const formattedDate = computed(() => {
 
 const renderedContent = computed(() => {
   if (!latestCritique.value?.content) return "";
-  return marked(latestCritique.value.content);
+  return DOMPurify.sanitize(marked(latestCritique.value.content) as string);
 });
 
 async function fetchCritiques() {

@@ -7,11 +7,14 @@ from scrapers import CourseraScraper, DeepLearningAIScraper, GoogleAIScraper, Sc
 
 async def _aggregate() -> list[ScrapedVideo]:
     scrapers = [DeepLearningAIScraper(), CourseraScraper(), GoogleAIScraper()]
+    results = await asyncio.gather(*[scraper.scrape() for scraper in scrapers], return_exceptions=True)
     all_videos: list[ScrapedVideo] = []
-    for scraper in scrapers:
-        videos = await scraper.scrape()
-        print(f"[{scraper.source}] Found {len(videos)} videos")
-        all_videos.extend(videos)
+    for scraper, result in zip(scrapers, results):
+        if isinstance(result, Exception):
+            print(f"[{scraper.source}] Scraping failed: {result}")
+            continue
+        print(f"[{scraper.source}] Found {len(result)} videos")
+        all_videos.extend(result)
     return all_videos
 
 

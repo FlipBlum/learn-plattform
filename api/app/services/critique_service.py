@@ -87,6 +87,8 @@ def generate_critique(user_id: str, period: str = "weekly") -> dict:
         .execute()
     )
 
+    if not result.data:
+        raise RuntimeError("Failed to insert critique")
     return result.data[0]
 
 

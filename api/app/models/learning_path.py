@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class LearningPathStatus(str, Enum):
@@ -34,8 +34,8 @@ class EpubCreate(BaseModel):
 
 
 class EpubProgressUpdate(BaseModel):
-    current_chapter: int
-    progress_percent: float
+    current_chapter: int = Field(ge=0)
+    progress_percent: float = Field(ge=0, le=100)
 
 
 class Epub(BaseModel):

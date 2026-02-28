@@ -57,6 +57,8 @@ def generate_quiz(epub_id: str, chapter: int, chapter_text: str) -> dict:
         .execute()
     )
 
+    if not result.data:
+        raise RuntimeError("Failed to insert quiz")
     return result.data[0]
 
 

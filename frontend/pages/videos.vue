@@ -52,7 +52,7 @@ async function fetchVideos() {
   error.value = "";
   try {
     const params = activeSource.value ? `?source=${activeSource.value}` : "";
-    const data = await apiFetch<{ videos: Video[] }>(`/api/videos/${params}`);
+    const data = await apiFetch<{ videos: Video[] }>(`/api/videos${params}`);
     videos.value = data.videos;
   } catch (e) {
     error.value = e instanceof Error ? e.message : "Unbekannter Fehler";

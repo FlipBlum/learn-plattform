@@ -68,6 +68,7 @@ function nextChapter() {
 }
 
 function emitProgress() {
+  if (props.epub.total_chapters <= 0) return;
   const percent = (currentChapter.value / props.epub.total_chapters) * 100;
   emit("progressUpdate", currentChapter.value, Math.round(percent));
 }

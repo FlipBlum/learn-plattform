@@ -23,7 +23,7 @@ async def upload_epub(
     user: dict = Depends(get_current_user),
 ):
     if not file.filename or not file.filename.endswith(".epub"):
-        raise HTTPException(status_code=400, detail="Only .epub files are accepted")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Only .epub files are accepted")
 
     file_bytes = await file.read()
     total_chapters = count_epub_chapters(file_bytes)

@@ -34,6 +34,7 @@
 </template>
 
 <script setup lang="ts">
+import DOMPurify from "dompurify";
 import { marked } from "marked";
 
 const { currentPage, loading, error, fetchLatest, fetchByDate } = useNews();
@@ -50,7 +51,7 @@ const formattedDate = computed(() => {
 
 const renderedContent = computed(() => {
   if (!currentPage.value?.content) return "";
-  return marked(currentPage.value.content);
+  return DOMPurify.sanitize(marked(currentPage.value.content) as string);
 });
 
 function onDateChange(e: Event) {

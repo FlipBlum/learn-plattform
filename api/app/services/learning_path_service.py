@@ -29,6 +29,8 @@ def create_path(user_id: str, name: str, status: str = "active") -> dict:
         )
         .execute()
     )
+    if not result.data:
+        raise RuntimeError("Failed to insert learning path")
     return result.data[0]
 
 
