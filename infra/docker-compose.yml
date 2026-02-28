@@ -1,44 +1,25 @@
+# Local development docker-compose
+# Production deployment is in the Hetzner VM's docker-compose.yml
 services:
   frontend:
     build:
       context: ../frontend
       dockerfile: ../infra/Dockerfile.frontend
+    ports:
+      - "3000:3000"
     env_file:
       - .env
-    restart: unless-stopped
     depends_on:
       - api
-    networks:
-      - web
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.learn-frontend.rule=Host(`learn.innovique.ai`) && !PathPrefix(`/api`)"
-      - "traefik.http.routers.learn-frontend.entrypoints=websecure"
-      - "traefik.http.routers.learn-frontend.tls.certresolver=myresolver"
-      - "traefik.http.routers.learn-frontend-http.rule=Host(`learn.innovique.ai`) && !PathPrefix(`/api`)"
-      - "traefik.http.routers.learn-frontend-http.entrypoints=web"
-      - "traefik.http.middlewares.learn-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.learn-frontend-http.middlewares=learn-https-redirect"
-      - "traefik.http.services.learn-frontend.loadbalancer.server.port=3000"
 
   api:
     build:
       context: ../api
       dockerfile: ../infra/Dockerfile.api
+    ports:
+      - "8000:8000"
     env_file:
       - .env
-    restart: unless-stopped
-    networks:
-      - web
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.learn-api.rule=Host(`learn.innovique.ai`) && PathPrefix(`/api`)"
-      - "traefik.http.routers.learn-api.entrypoints=websecure"
-      - "traefik.http.routers.learn-api.tls.certresolver=myresolver"
-      - "traefik.http.routers.learn-api-http.rule=Host(`learn.innovique.ai`) && PathPrefix(`/api`)"
-      - "traefik.http.routers.learn-api-http.entrypoints=web"
-      - "traefik.http.routers.learn-api-http.middlewares=learn-https-redirect"
-      - "traefik.http.services.learn-api.loadbalancer.server.port=8000"
 
   worker:
     build:
@@ -46,10 +27,3 @@ services:
       dockerfile: ../infra/Dockerfile.worker
     env_file:
       - .env
-    restart: unless-stopped
-    networks:
-      - web
-
-networks:
-  web:
-    external: true
