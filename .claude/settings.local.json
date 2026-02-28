@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n \"datetime\\\\|timezone\" /Users/p.blum/Projects/private/github/learn-plattform/worker/jobs/*.py)",
+      "Bash(grep -n \"execute\\(\\)\" /Users/p.blum/Projects/private/github/learn-plattform/worker/jobs/*.py)",
+      "Bash(grep -n \"\\\\.data\\\\[0\\\\]\" app/services/*.py)",
+      "Bash(grep -n \"await\" /Users/p.blum/Projects/private/github/learn-plattform/worker/jobs/*.py)",
+      "Bash(npm install dompurify)",
+      "Bash(npm install -D @types/dompurify)",
+      "Bash(npm install --legacy-peer-deps dompurify @types/dompurify)",
+      "mcp__d049dc93-1a2f-444c-9de0-cf860877eb88__get_board_info",
+      "mcp__d049dc93-1a2f-444c-9de0-cf860877eb88__create_doc",
+      "mcp__d049dc93-1a2f-444c-9de0-cf860877eb88__get_board_items_page",
+      "Bash(git add api/app/models/learning_path.py api/app/routers/epub.py api/app/services/critique_service.py api/app/services/epub_service.py api/app/services/learning_path_service.py api/app/services/quiz_service.py frontend/components/CritiqueCard.vue frontend/components/EpubReader.vue frontend/composables/useAuth.ts frontend/package-lock.json frontend/package.json frontend/pages/news.vue frontend/pages/videos.vue worker/jobs/rss_fetcher.py worker/jobs/video_aggregator.py)",
+      "Bash(git commit:*)",
+      "Bash(git add infra/docker-compose.yml infra/.env.example)",
+      "Bash(git add infra/Dockerfile.frontend infra/docker-compose.yml infra/.env.example)",
+      "Bash(git add infra/docker-compose.yml)",
+      "Bash(git add docker-compose.yml)",
+      "Bash(ssh n8n \"cd /opt && sudo git clone https://github.com/FlipBlum/learn-plattform.git && ls -la /opt/learn-plattform/\")",
+      "Bash(ssh n8n \"cp /opt/learn-plattform/infra/.env.example /opt/learn-plattform/infra/.env && cat /opt/learn-plattform/infra/.env.example\")",
+      "Bash(ssh n8n:*)",
+      "Bash(git push origin main)",
+      "Bash(git add infra/Dockerfile.frontend)",
+      "Bash(dig +short learn.innovique.ai)",
+      "Bash(nslookup learn.innovique.ai)",
+      "Bash(nslookup learn.innovique.ai 8.8.8.8)",
+      "Bash(nslookup innovique.ai 8.8.8.8)",
+      "Bash(nslookup n8n.innovique.ai 8.8.8.8)",
+      "Bash(curl -sI https://learn.innovique.ai)",
+      "Bash(curl -sI https://learn.innovique.ai/api/health)",
+      "Bash(curl -v --max-time 10 https://learn.innovique.ai)",
+      "Bash(dig @8.8.8.8 learn.innovique.ai +short)",
+      "Bash(curl -sI --max-time 10 https://learn.innovique.ai)"
+    ]
+  }
+}

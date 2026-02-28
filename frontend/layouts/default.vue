@@ -2,7 +2,7 @@
   <div class="app-layout">
     <nav class="app-nav">
       <div class="nav-links">
-        <NuxtLink to="/news">News</NuxtLink>
+        <NuxtLink to="/news">Test123</NuxtLink>
         <NuxtLink to="/videos">Videos</NuxtLink>
         <NuxtLink to="/learn">Learn</NuxtLink>
       </div>
